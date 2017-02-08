@@ -1,3 +1,7 @@
-git add . && git commit -m '¸üĞÂ' && git push origin master
+D:
+
+git add . && git commit -m 'test' && git push origin master
+
+pause
 
 
