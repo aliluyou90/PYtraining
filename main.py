@@ -22,13 +22,14 @@ def fail_condition(gamer, nonsense):
         death()
     elif gamer.health <= 0 and gamer.isplayer == False:
         print_info("You WIN!!!")
+        return
 
     if nonsense >= 5:
         nonsense_check = input("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
                                "Can you be serious and don't say those crap's to me?(y/n)\n" +
                                "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n")
         if "y" in nonsense_check.split():
-            nonsense = 0
+            gamer.nonsense = 0
         else:
             print_info("All right, then I will kill you....")
             death()
@@ -38,15 +39,19 @@ def execute_event(args):
     this_event = event[args]
     if this_event["active"]:
         print_info(this_event["description"][0])
-        if len(this_event["creeps"]) != 0:
+        if this_event["creeps"]:
             defend = enemy(creeps[this_event["creeps"]])
             battle(playerA, defend)
-        elif len(this_event["status_change"]) != 0:
+            return
+        elif this_event["status_change"]:
             change = this_event["status_change"]
             playerA.health -= change[0]
             playerA.defense -= change[1]
             playerA.health -= change[2]
+        else:
+            pass
         this_event["active"] = False
+
     else:
         print_info(this_event["description"][1])
 
@@ -97,19 +102,19 @@ if __name__ == "__main__":
                     player_decision = []
 
                     [player_decision.append(eve_name[i]) for i in range(len(keyword)) if keyword[i].lower() in cmd_s]
-                    if len(player_decision) == 1:
+                    temp_decisionlen = len(player_decision)
+                    if not temp_decisionlen:
+                        print("I don't understand, do it again")
+                        continue
+                    if temp_decisionlen == 1:
                         execute_event(player_decision[0])
                         break
-                    elif len(player_decision) > 1:
+                    else:
                         print("Slow down, do one thing at a time")
 
-                    else:
-                        print("I don't understand, do it again")
-
             elif "leave" in cmd or "l" in cmd:
-                current_location = playerA.location
-                new_location = info_exit(current_location)
-                playerA.location = new_location
+                playerA.location = info_exit(playerA.location)
+
     except KeyboardInterrupt:
         print_info("Why don't try harder")
         exit()
