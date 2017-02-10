@@ -88,42 +88,36 @@ def introduction():
                 
                 no_name = no_name+1
                                                
-                
-                if player_name == "" or len(player_name.split())==0:
-                        
+                temp_namewordlen = len(player_name.split())
+                temp_namelen = len(player_name)
+                if not temp_namewordlen:
                         print_info("Should I call you Space Guy? Enter Guy? Or Mr. No Name !?")
-                elif len(player_name)<=2 :
+                        continue
+
+                elif temp_namelen<=2 :
                         
                         print_info("Come on, "+player_name+" is not a name, are you shy?")
-                elif len(player_name) >= 16 or len(player_name.split())>3  :
-                        
-                        print_info("You got to be kiding me, your name is so fucking long")
-                
+                        continue
+                elif temp_namelen >= 16 or temp_namewordlen>3:
+                        print_info("You got to be kiding me, your name is so freaking long")
                 else:
                         break
+
                 if no_name>3  :
                  player_name = "Player A"
                  
                  print("All right, enough. I'll just call you " + player_name+", you happy now?")                         
-                        
-                print("Now do it again.....")                
+                 break
+                 print("Now do it again.....")
                                 
         time.sleep(0.5) 
         
         print("\n Initializing", end =' ')
         time.sleep(1)
         print("...", end = ' ' )
-        time.sleep(1)
-        print("Just Kidding" )        
-       
-        
-
-         
-       
-        print("\nOK," ,player_name+". Let's start the show.")
+        print("Just Kidding" )
         playerA = player(player_name)
-        
-        #creeps_ingame = [creeps(i) for i in creep_sample]
+        print("OK," +player_name+". Let's start the show.")
         return playerA
 #----------------------------------------------------------------------
 

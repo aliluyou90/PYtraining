@@ -4,12 +4,6 @@ from initialization import *
 from main import *
 import os
 
-
-def die_end():
-    print_info("You lose the battle")
-    death()
-
-
 def damage_gen(attack):
     damage = int(attack + random.randrange(-20, 20) / 10)
     return damage
@@ -68,20 +62,25 @@ def battle(Attack, Defend):
                         cmd_useskill = require_cmd("")
                         player_decision = []
                         [player_decision.append(i) for i in skill_keys if i.lower() in cmd_useskill]
-                        if len(player_decision) == 1:
+                        temp_decisionlen = len(player_decision)
+                        if not temp_decisionlen:
+                            print("I don't understand, do it again.")
+                            continue
+
+                        if temp_decisionlen:
                             skill = creep_skills[Attack.skillname[player_decision[0]]]
                             break
-                        elif len(player_decision) > 1:
-                            print("You can only use one skill at a time.")
-
                         else:
-                            print("I don't understand, do it again.")
+                            print("You can only use one skill at a time.")
+                            continue
+
                 else:
                     skill = random.choice(Attack.skillname)
                 print_info(Attack.name + " use skill ----->" + skill["description"])
                 Defend.health -= int(skill["effect"][0] * (10 - Defend.defense) / 10)
                 Defend.defense -= skill["effect"][1]
                 Attack.health -= skill["effect"][2]
+                next_round = 1
             else:
                 print_info("You just can't type well, can you?")
                 nonsense += 1

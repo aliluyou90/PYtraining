@@ -10,6 +10,15 @@ def death():
     print_info("You are dead ! Game Over")
     exit()
 
+def show_manu():
+    print("=========================================\n"
+          "Name: {}                                 \n"
+          "HP: {}        AT: {}        DE:{}        \n"
+          "Armor:{}                                 \n"
+          "Infantry: {}                             \n"
+          "=========================================\n".format(playerA.name, playerA.health, playerA.attack, playerA.defense,"None","None")
+        )
+
 
 def require_cmd(info):
     print(info + "\n")
@@ -67,31 +76,30 @@ def info_exit(current_location):
         cmd_e = require_cmd("what is your decision?")
 
         player_decision = list(map(exits.get, cmd_e))
-        checker = len(player_decision)
+        temp_decisionlen = len(player_decision)
+        if not temp_decisionlen:
+            print_info("I don't understand")
+            continue
 
-        if checker == 1 and player_decision[0] != None:  # temperory solution there was a weird bug about type(None)
+        if temp_decisionlen == 1 and player_decision[0] != None:  # temperory solution there was a weird bug about type(None)
             new_location = player_decision[0]
             return new_location
-        elif checker > 1:
-            print_info("Can you split and go different ways at once?")
         else:
-            print_info("I don't understand")
-
+            print_info("Can you split and go different ways at once?")
 
 if __name__ == "__main__":
     nonsense = 0
     playerA = introduction()
-    # creep_inbattle =enemy(random.choice(creeps))
 
     try:
+        print_info("Now you are in " + playerA.location)
         while True:
             fail_condition(playerA, nonsense)
-
-            print_info("Now you are in " + playerA.location)
             cmd = require_cmd("Now what's your move?\n"
-                              "[search/s or Leave/L]")
+                              "[search/s, manu/m or Leave/L]")
 
             if "search" in cmd or "s" in cmd:
+                print_info(gamemap[playerA.location]["description"])
                 search_res = gamemap[playerA.location]["key_eve"]
                 keyword = list(search_res.keys())
                 eve_name = list(search_res.values())
@@ -114,6 +122,8 @@ if __name__ == "__main__":
 
             elif "leave" in cmd or "l" in cmd:
                 playerA.location = info_exit(playerA.location)
+            elif "manu" in cmd or "m" in cmd:
+                show_manu()
 
     except KeyboardInterrupt:
         print_info("Why don't try harder")
