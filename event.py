@@ -8,7 +8,9 @@ DR01 = {"description": ["You played the broken piano and made distribing noises.
         "creeps": "ugly_cat",
         
         "status_change":[],
-        
+
+        "drop_item": "",
+
         "active": True
         }
 
@@ -17,6 +19,8 @@ NON = {"description": ["Nothing happened","Nothing happened"],
         "creeps": "",
         
         "status_change":[],
+
+        "drop_item": "",
         
         "active": True
         }
@@ -27,7 +31,9 @@ DR02 = {"description": ["There is something covered by the blood, you try to wip
 
        "creeps": "",
 
-        "status_change": [10, 0, 0],
+        "status_change": [10, 0, 0, 0],
+
+        "drop_item": "",
 
         "active": True
         }
@@ -38,6 +44,8 @@ SB01 = {"description": ["What a beautiful crown and it looks perfect on you, huh
         "creeps": "golden_snake",
 
        "status_change": [],
+
+        "drop_item": "",
 
         "active": True
         }
@@ -50,7 +58,9 @@ SB02 = {"description": ["You pick up the sticky stink cake and start eating it, 
 
         "creeps": "",
 
-       "status_change":[5, 2, 0],
+        "status_change":[5, 0, 2, 0],
+
+        "drop_item": "",
 
         "active": True
         }
@@ -61,9 +71,9 @@ ST01 = {"description": ["You picked a handy stick, this could be a good weapon (
 
         "creeps": "",
 
-        "status_change":[5, 2, 0],
+        "status_change":[],
 
-        "item": "item_stick",
+        "drop_item": "item_stick",
 
         "active": True
         }
@@ -83,5 +93,17 @@ event = {"event_DR01": DR01,
          "event_SB01": SB01,
          "event_SB02": SB02
          }
+#================================================================================
+
+item_stick = {"name":"Iron Stick",
+                "is_armor": True ,
+                 "active": True,
+                 "description" : "You try to swing it and found it is pretty handy"
+                 }
 
 
+
+items = { "item_stick": item_stick
+
+
+        }

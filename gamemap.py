@@ -102,43 +102,7 @@ room_boss = {
     "key_eve": {"A": "event_BR01",
                 "B": "event_BR02",
                 "C": "leave"},
-
 }
-
-armoury = {
-    "name": "Armoury",
-
-    "description": "",
-
-    "exits": {"east": "Basement"},
-
-    "action_info": ["A : Take the shining crown and put it on",
-                    "B : eat the cake on the floor",
-                    "C : Just Leave"],
-
-    "key_eve": {"A": "event_AM01",
-                "B": "event_AM02",
-                "C": "leave"},
-}
-
-room_treasure = {
-
-    "name": "Treasure Room",
-
-    "description": "",
-
-    "exits": {"southwest": "Basement"},
-
-    "action_info": ["A : Take the shining crown and put it on",
-                    "B : eat the cake on the floor",
-                    "C : Just Leave"],
-
-    "key_eve": {"A": "event_TR01",
-                "B": "event_TR02",
-                "C": "leave"},
-}
-
-
 
 room_exit = {
     "name": "Exit",
@@ -194,23 +158,7 @@ mainhall = {
 
     "description": "",
 
-    "exits": {"north": "exit", "upstairs": "二楼", "downstairs": "Basement", "west": "storage room"},
-
-    "action_info": ["A : Take the shining crown and put it on",
-                    "B : eat the cake on the floor",
-                    "C : Just Leave"],
-
-    "key_eve": {"A": "event_CD01",
-                "B": "event_CD02",
-                "C": "leave"},
-}
-
-mainhall = {
-    "name": "Main Hall",
-
-    "description": "",
-
-    "exits": {"north": "exit", "upstairs": "second floor", "downstairs": "Basement", "north": "armoury"},
+    "exits": {"north": "exit", "upstairs": "二楼", "downstairs": "Basement", "west": "Storage Room"},
 
     "action_info": ["A : Take the shining crown and put it on",
                     "B : eat the cake on the floor",
@@ -224,9 +172,9 @@ mainhall = {
 room_storage = {
     "name": "Storage",
 
-    "description": "仓库很大，东西摆放很乱，你找到了几根铁棍",
+    "description": "A big messy storage room, there is several iron sticks could be useful",
 
-    "exits": {"east": "main hall"},
+    "exits": {"east": "Main Hall"},
 
     "action_info": ["A : Take the a metal stick",
                     "B : Just Leave"],
@@ -237,8 +185,6 @@ room_storage = {
 
 gamemap = {
     "boss": room_boss,
-    "armoury": armoury,
-    "treasure": room_treasure,
     "Basement": room_basement,
     "Main Hall": mainhall,
     "exit": room_exit,

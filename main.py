@@ -1,23 +1,14 @@
 import random
 import time
+import re
 from gamemap import *
 from initialization import *
 from battle import *
-from event import event
-
+from event import *
 
 def death():
     print_info("You are dead ! Game Over")
     exit()
-
-def show_manu():
-    print("=========================================\n"
-          "Name: {}                                 \n"
-          "HP: {}        AT: {}        DE:{}        \n"
-          "Armor:{}                                 \n"
-          "Infantry: {}                             \n"
-          "=========================================\n".format(playerA.name, playerA.health, playerA.attack, playerA.defense,"None","None")
-        )
 
 
 def require_cmd(info):
@@ -26,6 +17,40 @@ def require_cmd(info):
     return cmd
 
 
+def show_manu():
+    print("=========================================\n"
+          "Name: {}                                 \n"
+          "HP: {}        AT: {}        DE:{}        \n"
+          "Armor:{}                                 \n"
+          "Inventory: {}                             \n"
+          "=========================================\n".format(playerA.name, playerA.health, playerA.attack,
+                                                               playerA.defense, "None", ". ".join(playerA.inventory))
+          )
+    cmd_useitem = require_cmd("Do you want to use item")
+    if "y" in cmd_useitem or "yes" in cmd_useitem:
+        if len(playerA.inventory) > 0:
+
+            [print_info("{}. {}".format(i, playerA.inventory[i])) for i in range(len(playerA.inventory))]
+
+
+            while True:
+                cmd_usewhat = require_cmd("Use what?")
+                temp_cmd = []
+                [temp_cmd.append(int(i)) for i in cmd_usewhat if i.isnumeric()]
+                if len(temp_cmd) != 1:
+                    continue
+                if    0<= temp_cmd[0] <= len(playerA.inventory):
+                    print("you used {}.".format(playerA.inventory[temp_cmd[0]]))
+                    break
+                else:
+                    print("I don't understand.")
+                    continue
+
+
+        else:
+            print_info("You have noting")
+    else:
+        "I will take that as a No"
 def fail_condition(gamer, nonsense):
     if gamer.health <= 0 and gamer.isplayer == True:
         death()
@@ -55,8 +80,14 @@ def execute_event(args):
         elif this_event["status_change"]:
             change = this_event["status_change"]
             playerA.health -= change[0]
-            playerA.defense -= change[1]
-            playerA.health -= change[2]
+            playerA.attack -= change[1]
+            playerA.defense -= change[2]
+            playerA.health -= change[3]
+        elif this_event["drop_item"]:
+                temp_item = items[this_event["drop_item"]]
+                print_info("You put {} in your inventory".format(temp_item["name"]))
+                playerA.inventory.append(temp_item["name"])
+
         else:
             pass
         this_event["active"] = False
@@ -89,8 +120,8 @@ def info_exit(current_location):
 
 if __name__ == "__main__":
     nonsense = 0
-    playerA = introduction()
-
+    #playerA = introduction()
+    playerA = player("kai")
     try:
         print_info("Now you are in " + playerA.location)
         while True:
@@ -121,7 +152,9 @@ if __name__ == "__main__":
                         print("Slow down, do one thing at a time")
 
             elif "leave" in cmd or "l" in cmd:
+
                 playerA.location = info_exit(playerA.location)
+                print_info("You entered "+ playerA.location)
             elif "manu" in cmd or "m" in cmd:
                 show_manu()
 

@@ -11,7 +11,7 @@ def print_info(info) :
  for i in info.split("\n"):
   
   print(info_block[0].format(i.center(79," ")))
-  time.sleep(1)
+  time.sleep(0.5)
   
 
 

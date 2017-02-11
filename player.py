@@ -1,6 +1,7 @@
 class player:
     inventory = []
-    location = "Main Hall"
+    armor = []
+    location = "Storage Room"
     isplayer = True
     nonsense = 0
     attack = 10
