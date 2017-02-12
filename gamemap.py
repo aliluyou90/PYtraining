@@ -31,7 +31,7 @@ creep_uglycat = {"name": "Ugly Cat",
                  "status": (False, 7, 1, 50, 0),
                  "battle_cmd": ("attack", "use skills"),
                  "skillID": ("cat_1", "cat_2"),
-                 "drop_item": "item_health"
+                 "drop_item": "item_potion"
                  }
 
 creep_pirate = {"name": "One-eye Pirate",
@@ -42,7 +42,7 @@ creep_pirate = {"name": "One-eye Pirate",
                 "status": (False, 9, -1, 70, 0),
                 "battle_cmd": ("attack", "attack", "use skills"),
                 "skillID": ("pirate_1", "pirate_2"),
-                "drop_item": "item_armor"
+                "drop_item": "item_boots"
                 }
 
 creep_giantant = {"name": "Giant Ant",
@@ -81,9 +81,9 @@ class enemy:
     def __init__(self, creep_data):
         self.isplayer, self.attack, self.defense, self.health, self.nonsense = creep_data["status"]
 
-        self.name, self.skillID, self.attack_description, self.battle_cmd = creep_data["name"], creep_data["skillID"], \
+        self.name, self.skillID, self.attack_description, self.battle_cmd, self.drop_item = creep_data["name"], creep_data["skillID"], \
                                                                             creep_data["attack_description"], \
-                                                                            creep_data["battle_cmd"]
+                                                                            creep_data["battle_cmd"], creep_data["drop_item"]
         self.skillname = []
         for i in self.skillID:
             self.skillname.append(creep_skills.get(i))
@@ -158,7 +158,7 @@ mainhall = {
 
     "description": "",
 
-    "exits": {"north": "exit", "upstairs": "二楼", "downstairs": "Basement", "west": "Storage Room"},
+    "exits": {"north": "exit", "upstairs": "boss", "downstairs": "Basement", "west": "Storage Room"},
 
     "action_info": ["A : Take the shining crown and put it on",
                     "B : eat the cake on the floor",

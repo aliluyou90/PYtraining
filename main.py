@@ -5,6 +5,7 @@ from gamemap import *
 from initialization import *
 from battle import *
 from event import *
+from items import items
 
 def death():
     print_info("You are dead ! Game Over")
@@ -16,47 +17,45 @@ def require_cmd(info):
     cmd = input().lower().split()
     return cmd
 
+#def excute_useitem(item):
+
+
 
 def show_manu():
-    print("=========================================\n"
-          "Name: {}                                 \n"
-          "HP: {}        AT: {}        DE:{}        \n"
-          "Armor:{}                                 \n"
-          "Inventory: {}                             \n"
-          "=========================================\n".format(playerA.name, playerA.health, playerA.attack,
-                                                               playerA.defense, "None", ". ".join(playerA.inventory))
+    print("===============================================================\n"
+          "Name: {}                                                  \n"
+          "HP: {}                AT: {}               DE:{}          \n"
+          "Inventory: {}\n"
+          "===============================================================\n".format(playerA.name, playerA.health, playerA.attack,
+                                                               playerA.defense, ". ".join(playerA.inventory))
           )
-    cmd_useitem = require_cmd("Do you want to use item")
-    if "y" in cmd_useitem or "yes" in cmd_useitem:
-        if len(playerA.inventory) > 0:
+    if playerA.inventory:
 
-            [print_info("{}. {}".format(i, playerA.inventory[i])) for i in range(len(playerA.inventory))]
+        cmd_useitem = require_cmd("Do you want to use item")
+        if "y" in cmd_useitem or "yes" in cmd_useitem:
+            if len(playerA.inventory) > 0:
 
-
-            while True:
-                cmd_usewhat = require_cmd("Use what?")
-                temp_cmd = []
-                [temp_cmd.append(int(i)) for i in cmd_usewhat if i.isnumeric()]
-                if len(temp_cmd) != 1:
-                    continue
-                if    0<= temp_cmd[0] <= len(playerA.inventory):
-                    print("you used {}.".format(playerA.inventory[temp_cmd[0]]))
-                    break
-                else:
-                    print("I don't understand.")
-                    continue
+                [print_info("{}. {}".format(i, playerA.inventory[i])) for i in range(len(playerA.inventory))]
 
 
+                while True:
+                    cmd_usewhat = require_cmd("Use what?")
+                    temp_cmd = []
+                    [temp_cmd.append(int(i)) for i in cmd_usewhat if i.isnumeric()]
+                    if len(temp_cmd) != 1:
+                        continue
+                    if    0<= temp_cmd[0] <= len(playerA.inventory):
+                        print("you used {}.".format(playerA.inventory[temp_cmd[0]]))
+                        #excute_useitem(playerA.inventory[temp_cmd[0]])
+                        break
+                    else:
+                        print("I don't understand.")
+                        continue
         else:
-            print_info("You have noting")
-    else:
-        "I will take that as a No"
+            "I will take that as a No"
 def fail_condition(gamer, nonsense):
     if gamer.health <= 0 and gamer.isplayer == True:
         death()
-    elif gamer.health <= 0 and gamer.isplayer == False:
-        print_info("You WIN!!!")
-        return
 
     if nonsense >= 5:
         nonsense_check = input("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n" +
@@ -75,7 +74,10 @@ def execute_event(args):
         print_info(this_event["description"][0])
         if this_event["creeps"]:
             defend = enemy(creeps[this_event["creeps"]])
-            battle(playerA, defend)
+            isrun = battle(playerA, defend)
+            if defend.drop_item and isrun != True:
+                playerA.inventory.append(items[defend.drop_item]["name"])
+                print_info("You found {} in enemy's body".format(defend.drop_item))
             return
         elif this_event["status_change"]:
             change = this_event["status_change"]
@@ -115,7 +117,7 @@ def info_exit(current_location):
         if temp_decisionlen == 1 and player_decision[0] != None:  # temperory solution there was a weird bug about type(None)
             new_location = player_decision[0]
             return new_location
-        else:
+        elif temp_decisionlen > 1:
             print_info("Can you split and go different ways at once?")
 
 if __name__ == "__main__":
