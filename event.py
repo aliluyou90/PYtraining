@@ -70,7 +70,7 @@ ST01 = {"description": ["You picked a handy stick."
 
         "status_change":[],
 
-        "drop_item": "item_stick",
+        "drop_item": "Iron Stick",
 
         "active": True
         }
@@ -90,17 +90,55 @@ BR01 = {"description": ["You opened this delicate box, there is a big diamond.\n
         "active": True
         }
 
+BR02 = {"description": ["你晃了晃酒瓶，还有一半\n"
+
+                        ,"It is empty"],
+
+        "creeps": "",
+
+       "status_change": [],
+
+        "drop_item": "Wine",
+
+        "active": True
+        }
+BR03 = {"description": ["你在急救箱里面找到几片Pain Killer\n"
+
+                        ,"It is empty"],
+
+        "creeps": "",
+
+       "status_change": [],
+
+        "drop_item": "Pain Killer",
+
+        "active": True
+        }
+
+EX01 = {"description": ["你在信封里面找到一张纸，上面写着Game Instruction\n"
+
+                        ,"It is empty"],
+
+        "creeps": "",
+
+       "status_change": [],
+
+        "drop_item": "Game Instruction",
+
+        "active": True
+        }
+
+
+
 event = {"event_DR01": DR01,
          "event_DR02":DR02,
          "event_BR01": BR01,
-         "event_BR02":NON, 
-         "event_TR01": NON,
-         "event_TR02":NON,
-         "event_CD01": NON,
-         "event_CD02":NON,    
+         "event_BR02":BR02,
+         "event_BR03": BR03,
          "event_ST01": ST01,
-         "event_EX01": NON,
-         "event_EX02":NON,            
+         "event_EX01": EX01,
+         "event_MH01": NON,
+         "event_MH02":NON,
          "leave": NON,
          "event_SB01": SB01,
          "event_SB02": SB02

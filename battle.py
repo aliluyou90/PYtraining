@@ -25,7 +25,7 @@ def battle(Attack, Defend):
 
     while True:
 
-        fail_condition(Defend, nonsense)
+        #fail_condition(Defend, nonsense)
         if next_round == 1:
             Defend, Attack = Attack, Defend
             print_info("Now it's " + Attack.name + "'s turn!")
@@ -43,7 +43,7 @@ def battle(Attack, Defend):
                 next_round = 1
             else:
                 print_info("You escaped...... I'm impressed")
-                return True
+                return
         elif "skill" in cmd:
             if Attack.isplayer:
                 print("Now you want to use: \n")
@@ -79,7 +79,8 @@ def battle(Attack, Defend):
 
         if Defend.health <= 0:
             print_info(Defend.name + " is dead!")
-            return
+            temp_winner = True if Defend.isplayer else False
+            return temp_winner
         else:
             print_info(Defend.name + "'s HP is " + str(Defend.health) + ".")
 

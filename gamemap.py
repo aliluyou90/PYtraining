@@ -31,7 +31,7 @@ creep_uglycat = {"name": "Ugly Cat",
                  "status": (False, 7, 1, 50, 0),
                  "battle_cmd": ("attack", "use skills"),
                  "skillID": ("cat_1", "cat_2"),
-                 "drop_item": "item_potion"
+                 "drop_item": "Potion"
                  }
 
 creep_pirate = {"name": "One-eye Pirate",
@@ -42,7 +42,7 @@ creep_pirate = {"name": "One-eye Pirate",
                 "status": (False, 9, -1, 70, 0),
                 "battle_cmd": ("attack", "attack", "use skills"),
                 "skillID": ("pirate_1", "pirate_2"),
-                "drop_item": "item_boots"
+                "drop_item": "Pirate's Boots"
                 }
 
 creep_giantant = {"name": "Giant Ant",
@@ -54,7 +54,7 @@ creep_giantant = {"name": "Giant Ant",
                   "status": (False, 4, 3, 60, 0),
                   "battle_cmd": ("attack", "attack", "use skills"),
                   "skillID": ("ant_1", "ant_2"),
-                  "drop_item": ""
+                  "drop_item": "Potion"
                   }
 
 creep_snake = {"name": "Golden Snake",
@@ -67,7 +67,7 @@ creep_snake = {"name": "Golden Snake",
                "battle_cmd": ("attack", "use skills"),
                "skillID": ("snake_1", "snake_2"),
 
-               "drop_item": "item_key"
+               "drop_item": "Key"
                }
 
 creeps = {"giant_ant": creep_giantant,
@@ -91,33 +91,34 @@ class enemy:
 room_boss = {
     "name": "Boss Room",
 
-    "description": "",
+    "description": "房间布置得很精致，左边有个药品箱，酒柜上有很多酒\n"
+                   "中间的大桌子上面摆着一个漂亮的小盒子",
 
-    "exits": {"south": "Basement"},
+    "exits": {"downstairs": "Main Hall"},
 
-    "action_info": ["A : Take the shining crown and put it on",
-                    "B : eat the cake on the floor",
-                    "C : Just Leave"],
+    "action_info": ["A : 试图打开盒子",
+                    "B : 倒一杯酒",
+                    "C : 在药品箱里找找"
+                    "D : Just Leave"],
 
     "key_eve": {"A": "event_BR01",
                 "B": "event_BR02",
-                "C": "leave"},
+                "C": "event_BR03",
+                "D": "leave"},
 }
 
 room_exit = {
     "name": "Exit",
 
-    "description": "",
+    "description": "The door is locked, you have to find the key.",
 
     "exits": {"north": "Main Hall"},
 
-    "action_info": ["A : Take the shining crown and put it on",
-                    "B : eat the cake on the floor",
-                    "C : Just Leave"],
+    "action_info": ["A . Hit the door with rocks",
+                    "B . Take a look at the shoe shelf",
+                     ],
 
-    "key_eve": {"A": "event_EX01",
-                "B": "event_EX02",
-                "C": "leave"},
+    "key_eve": {"A": "leave", "B": "event_EX01"},
             }
 room_burrow = {
     "name": "Suspicious Burrow",
@@ -158,14 +159,14 @@ mainhall = {
 
     "description": "",
 
-    "exits": {"north": "exit", "upstairs": "boss", "downstairs": "Basement", "west": "Storage Room"},
+    "exits": {"south": "exit", "upstairs": "boss", "downstairs": "Basement", "west": "Storage Room"},
 
     "action_info": ["A : Take the shining crown and put it on",
                     "B : eat the cake on the floor",
                     "C : Just Leave"],
 
-    "key_eve": {"A": "event_CD01",
-                "B": "event_CD02",
+    "key_eve": {"A": "event_MH01",
+                "B": "event_MH02",
                 "C": "leave"},
 }
 

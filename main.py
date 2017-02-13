@@ -1,6 +1,5 @@
 import random
 import time
-import re
 from gamemap import *
 from initialization import *
 from battle import *
@@ -46,6 +45,7 @@ def show_manu():
                         continue
                     if    0<= temp_cmd[0] <= len(playerA.inventory):
                         print("you used {}.".format(playerA.inventory[temp_cmd[0]]))
+                        items[playerA.inventory[temp_cmd[0]]]["use_item"](playerA)
                         #excute_useitem(playerA.inventory[temp_cmd[0]])
                         break
                     else:
@@ -74,9 +74,9 @@ def execute_event(args):
         print_info(this_event["description"][0])
         if this_event["creeps"]:
             defend = enemy(creeps[this_event["creeps"]])
-            isrun = battle(playerA, defend)
-            if defend.drop_item and isrun != True:
-                playerA.inventory.append(items[defend.drop_item]["name"])
+            iswin = battle(playerA, defend)
+            if defend.drop_item and not iswin:
+                playerA.inventory.append(defend.drop_item)
                 print_info("You found {} in enemy's body".format(defend.drop_item))
             return
         elif this_event["status_change"]:
@@ -85,10 +85,10 @@ def execute_event(args):
             playerA.attack -= change[1]
             playerA.defense -= change[2]
             playerA.health -= change[3]
+
         elif this_event["drop_item"]:
-                temp_item = items[this_event["drop_item"]]
-                print_info("You put {} in your inventory".format(temp_item["name"]))
-                playerA.inventory.append(temp_item["name"])
+                print_info("You put {} in your inventory".format(this_event["drop_item"]))
+                playerA.inventory.append(this_event["drop_item"])
 
         else:
             pass
