@@ -1,6 +1,7 @@
 class player:
     inventory = []
-    location = "Main Hall"
+    armor = []
+    location = "exit"
     isplayer = True
     nonsense = 0
     attack = 10
@@ -19,7 +20,6 @@ class player:
 
 PLAYER = {
     "inventory": [],
-    # Start game at the reception
     "location": "dragon room",
     "isplayer": True,
     "nonsense": 0,
