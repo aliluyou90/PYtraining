@@ -46,7 +46,8 @@ def show_manu():
                     if    0<= temp_cmd[0] <= len(playerA.inventory):
                         print("you used {}.".format(playerA.inventory[temp_cmd[0]]))
                         items[playerA.inventory[temp_cmd[0]]]["use_item"](playerA)
-                        #excute_useitem(playerA.inventory[temp_cmd[0]])
+                        if items[playerA.inventory[temp_cmd[0]]]["usable"]:
+                            playerA.inventory.remove(playerA.inventory[temp_cmd[0]])
                         break
                     else:
                         print("I don't understand.")
