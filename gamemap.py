@@ -157,12 +157,12 @@ room_basement = {
 mainhall = {
     "name": "Main Hall",
 
-    "description": "",
+    "description": "一个宽敞的大厅，干净整齐，茶几上有一台高档咖啡机，唯独墙角有一个胡乱放着的大箱子",
 
     "exits": {"south": "exit", "upstairs": "boss", "downstairs": "Basement", "west": "Storage Room"},
 
-    "action_info": ["A : Take the shining crown and put it on",
-                    "B : eat the cake on the floor",
+    "action_info": ["A : Make a cup of coffee",
+                    "B : Check the paper box",
                     "C : Just Leave"],
 
     "key_eve": {"A": "event_MH01",

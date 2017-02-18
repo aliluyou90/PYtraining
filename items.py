@@ -61,19 +61,19 @@ item_coffee = {
                  }
 
 item_boots = {
-                "usable": False,
+                "usable": True,
                 "description" : "It is made of premium leather",
                 "use_item": use_boot,
                  }
 
 item_coat = {
-                "usable": False,
+                "usable": True,
                 "description" : "You took a try, not bad at all, maybe this coat can save your life...",
                 "use_item": use_coat,
                  }
 
 item_instruction = {
-                "usable": True,
+                "usable": False,
                 "description" : "Congrats! You found the shortcut of the game.",
                 "use_item": use_instruction,
                  }

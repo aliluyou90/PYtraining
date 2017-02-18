@@ -115,9 +115,9 @@ BR03 = {"description": ["你在急救箱里面找到几片Pain Killer\n"
         "active": True
         }
 
-EX01 = {"description": ["你在信封里面找到一张纸，上面写着Game Instruction\n"
+EX01 = {"description": ["你翻开墙角的箱子，突然出现一只Giant Ant！\n"
 
-                        ,"It is empty"],
+                        ,"Giant Ant 的巨大尸体依然在哪，你看着就觉得恶心"],
 
         "creeps": "",
 
@@ -128,6 +128,32 @@ EX01 = {"description": ["你在信封里面找到一张纸，上面写着Game In
         "active": True
         }
 
+MH01 = {"description": ["你给自己冲了一杯咖啡，味道很香\n"
+
+                        ,"There are no beans left"],
+
+        "creeps": "giant_ant",
+
+       "status_change": [],
+
+        "drop_item": "",
+
+        "active": True
+        }
+
+
+MH02 = {"description": ["你在信封里面找到一张纸，上面写着Game Instruction\n"
+
+                        ,"It is empty"],
+
+        "creeps": "giant_ant",
+
+       "status_change": [],
+
+        "drop_item": "",
+
+        "active": True
+        }
 
 
 event = {"event_DR01": DR01,
