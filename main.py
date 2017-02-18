@@ -123,8 +123,8 @@ def info_exit(current_location):
 
 if __name__ == "__main__":
     nonsense = 0
-    #playerA = introduction()
-    playerA = player("kai")
+    playerA = introduction()
+    #playerA = player("kai") //test
     try:
         print_info("Now you are in " + playerA.location)
         while True:
